@@ -1,14 +1,5 @@
 {
-  "crons": [
-    {
-      "path": "/api/cron/check-replies",
-      "schedule": "*/2 * * * *"
-    },
-    {
-      "path": "/api/cron/followups",
-      "schedule": "0 */6 * * *"
-    }
-  ],
+  "crons": [],
   "functions": {
     "src/app/api/send/route.ts": {
       "maxDuration": 60
