@@ -4,12 +4,8 @@ const nextConfig: NextConfig = {
   // Vercel deployment optimizations
   output: 'standalone', // Optimize for serverless deployment
   
-  // Disable ESLint during build to allow deployment
-  // TODO: Fix linting errors and re-enable
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   
+
   // Disable TypeScript errors during build
   // TODO: Fix TypeScript errors and re-enable
   typescript: {
