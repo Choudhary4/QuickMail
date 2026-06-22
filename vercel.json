@@ -1,0 +1,30 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/check-replies",
+      "schedule": "*/2 * * * *"
+    },
+    {
+      "path": "/api/cron/followups",
+      "schedule": "0 */6 * * *"
+    }
+  ],
+  "functions": {
+    "src/app/api/send/route.ts": {
+      "maxDuration": 60
+    },
+    "src/app/api/cron/check-replies/route.ts": {
+      "maxDuration": 60
+    },
+    "src/app/api/cron/followups/route.ts": {
+      "maxDuration": 300
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
+    }
+  ]
+}
+

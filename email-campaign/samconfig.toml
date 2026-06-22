@@ -1,0 +1,14 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "email-campaign-async"
+resolve_s3 = true
+s3_prefix = "email-campaign-async"
+region = "ap-south-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "ParamSESConfigurationSet=\"\" ParamBaseUrl=\"https://smtp-mail-sigma.vercel.app\""
+image_repositories = []
+
+[default.global.parameters]
+region = "ap-south-1"

@@ -1,0 +1,73 @@
+name: QuickMail Cron Jobs
+
+# DISABLED: AWS EventBridge is handling cron jobs (every 2 minutes)
+# This workflow is kept for manual testing only via workflow_dispatch
+on:
+  # schedule:
+  #   # Check replies every 5 minutes (GitHub Actions minimum is 5 minutes)
+  #   - cron: '*/5 * * * *'
+  #   # Send follow-ups every 6 hours
+  #   - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual trigger for testing
+
+jobs:
+  check-replies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Replies
+        run: |
+          if [ -z "$VERCEL_APP_URL" ] || [ -z "$CRON_SECRET_TOKEN" ]; then
+            echo "❌ Error: VERCEL_APP_URL or CRON_SECRET_TOKEN secrets are not set"
+            echo "Please set these secrets in: Repository Settings → Secrets and variables → Actions"
+            exit 1
+          fi
+          
+          echo "Calling: https://${VERCEL_APP_URL}/api/cron/check-replies?token=***"
+          response=$(curl -s -w "\n%{http_code}" -X GET "https://${VERCEL_APP_URL}/api/cron/check-replies?token=${CRON_SECRET_TOKEN}")
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | sed '$d')
+          
+          echo "Response code: $http_code"
+          echo "Response body: $body"
+          
+          if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 300 ]; then
+            echo "✅ Success: Reply check completed"
+            exit 0
+          else
+            echo "❌ Error: API returned status $http_code"
+            exit 1
+          fi
+        env:
+          VERCEL_APP_URL: ${{ secrets.VERCEL_APP_URL }}
+          CRON_SECRET_TOKEN: ${{ secrets.CRON_SECRET_TOKEN }}
+  
+  followups:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Follow-ups
+        run: |
+          if [ -z "$VERCEL_APP_URL" ] || [ -z "$CRON_SECRET_TOKEN" ]; then
+            echo "❌ Error: VERCEL_APP_URL or CRON_SECRET_TOKEN secrets are not set"
+            echo "Please set these secrets in: Repository Settings → Secrets and variables → Actions"
+            exit 1
+          fi
+          
+          echo "Calling: https://${VERCEL_APP_URL}/api/cron/followups?token=***"
+          response=$(curl -s -w "\n%{http_code}" -X GET "https://${VERCEL_APP_URL}/api/cron/followups?token=${CRON_SECRET_TOKEN}")
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | sed '$d')
+          
+          echo "Response code: $http_code"
+          echo "Response body: $body"
+          
+          if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 300 ]; then
+            echo "✅ Success: Follow-ups completed"
+            exit 0
+          else
+            echo "❌ Error: API returned status $http_code"
+            exit 1
+          fi
+        env:
+          VERCEL_APP_URL: ${{ secrets.VERCEL_APP_URL }}
+          CRON_SECRET_TOKEN: ${{ secrets.CRON_SECRET_TOKEN }}
+

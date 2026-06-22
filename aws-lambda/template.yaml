@@ -1,0 +1,119 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  QuickMail Cron Jobs - AWS Lambda function with EventBridge rules
+  for checking email replies and sending follow-up emails.
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 128
+    Runtime: python3.11
+    Architectures:
+      - x86_64
+
+Resources:
+  # Lambda function for cron jobs
+  CronHandlerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: cron-handler.lambda_handler
+      Description: Triggers QuickMail cron jobs via Vercel API
+      Environment:
+        Variables:
+          VERCEL_APP_URL: !Ref ParamVercelAppUrl
+          CRON_SECRET_TOKEN: !Ref ParamCronSecretToken
+      Policies:
+        # CloudWatch Logs permissions (auto-added, but explicit for clarity)
+        - Statement:
+          - Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: '*'
+
+  # EventBridge Rule: Check Replies (Every 2 minutes)
+  CheckRepliesRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: quickmail-check-replies
+      Description: Check for email replies every 2 minutes
+      ScheduleExpression: rate(2 minutes)
+      State: ENABLED
+      Targets:
+        - Arn: !GetAtt CronHandlerFunction.Arn
+          Id: CheckRepliesTarget
+          Input: !Sub |
+            {
+              "endpoint": "check-replies"
+            }
+
+  # EventBridge Rule: Send Follow-ups (Every 2 minutes)
+  FollowupsRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: quickmail-followups
+      Description: Send follow-up emails every 2 minutes (checks for replies that are 2+ minutes old)
+      ScheduleExpression: rate(2 minutes)
+      State: ENABLED
+      Targets:
+        - Arn: !GetAtt CronHandlerFunction.Arn
+          Id: FollowupsTarget
+          Input: !Sub |
+            {
+              "endpoint": "followups"
+            }
+
+  # Permission for EventBridge to invoke Lambda (Check Replies)
+  CheckRepliesPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref CronHandlerFunction
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt CheckRepliesRule.Arn
+
+  # Permission for EventBridge to invoke Lambda (Follow-ups)
+  FollowupsPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref CronHandlerFunction
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt FollowupsRule.Arn
+
+Parameters:
+  ParamVercelAppUrl:
+    Type: String
+    Description: Your Vercel app URL (without https://, e.g., your-app.vercel.app)
+    Default: ""
+  
+  ParamCronSecretToken:
+    Type: String
+    NoEcho: true
+    Description: Secret token for authenticating cron job requests (must match Vercel CRON_SECRET_TOKEN)
+    Default: ""
+
+Outputs:
+  CronHandlerFunctionArn:
+    Description: ARN of the cron handler Lambda function
+    Value: !GetAtt CronHandlerFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-CronHandlerArn"
+
+  CronHandlerFunctionName:
+    Description: Name of the cron handler Lambda function
+    Value: !Ref CronHandlerFunction
+    Export:
+      Name: !Sub "${AWS::StackName}-CronHandlerName"
+
+  CheckRepliesRuleArn:
+    Description: ARN of the check replies EventBridge rule
+    Value: !GetAtt CheckRepliesRule.Arn
+
+  FollowupsRuleArn:
+    Description: ARN of the follow-ups EventBridge rule
+    Value: !GetAtt FollowupsRule.Arn
+

@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform Your Hiring Process with HireZapp</title>
+    <!-- Updated to use Figtree font instead of Inter/Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            /* Updated to use Figtree font and simplified background */
+            font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #000000;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+        
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .header {
+            /* Simplified to use only primary blue color */
+            background: #3B82F6;
+            padding: 60px 50px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/placeholder.svg?height=400&width=800') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            font-family: 'Figtree', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+        
+        .tagline {
+            font-size: 24px;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .hero-badge {
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+            to { box-shadow: 0 0 30px rgba(255,255,255,0.5); }
+        }
+        
+        .content {
+            padding: 0;
+        }
+        
+        .section {
+            padding: 60px 50px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-alt {
+            /* Simplified background to light gray */
+            background: #f9fafb;
+        }
+        
+        /* Updated explosive headline to use primary blue */
+        .explosive-headline {
+            font-family: 'Figtree', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            color: #3B82F6;
+            text-align: center;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+        
+        .sub-headline {
+            font-size: 22px;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 500;
+        }
+        
+        .greeting {
+            font-size: 22px;
+            color: #3B82F6;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .highlight {
+            /* Simplified to use primary blue */
+            color: #3B82F6;
+            font-weight: 700;
+        }
+        
+        /* Updated problem box to use black/white/blue theme */
+        .problem-box {
+            background: #ffffff;
+            border: 3px solid #000000;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .problem-box::before {
+            content: '⚠';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 60px;
+            opacity: 0.1;
+        }
+        
+        .solution-box {
+            /* Updated to use primary blue theme */
+            background: #f0f9ff;
+            border: 3px solid #3B82F6;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+        }
+        
+        .solution-box::before {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 60px;
+            opacity: 0.1;
+        }
+        
+        /* Updated urgency banner to use black background */
+        .urgency-banner {
+            background: #000000;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 40px 0;
+            border-radius: 12px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .fomo-box {
+            /* Updated to use primary blue background */
+            background: #3B82F6;
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin: 40px 0;
+            text-align: center;
+            font-weight: 600;
+            border: 3px solid #1d4ed8;
+            animation: shake 3s ease-in-out infinite;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #3B82F6;
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card:hover {
+            border-color: #3B82F6;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+        
+        .feature-icon {
+            width: 90px;
+            height: 90px;
+            background: #3B82F6;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 36px;
+            color: white;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .feature-title {
+            font-family: 'Figtree', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+        
+        .feature-desc {
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        
+        /* Updated stats to use primary blue */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 35px 25px;
+            background: #3B82F6;
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-family: 'Figtree', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        /* Updated case study to use black background */
+        .case-study {
+            background: #000000;
+            color: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-study::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/placeholder.svg?height=300&width=700') center/cover;
+            opacity: 0.05;
+        }
+        
+        .case-study-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .yc-badge {
+            /* Updated to use primary blue */
+            background: #3B82F6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+        
+        .case-study-title {
+            font-family: 'Figtree', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+        
+        .case-study-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .case-stat {
+            text-align: center;
+            padding: 25px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .case-stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #3B82F6;
+            display: block;
+        }
+        
+        .case-stat-label {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        
+        .cta-section {
+            /* Simplified to use primary blue background */
+            background: #3B82F6;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/placeholder.svg?height=400&width=800') center/cover;
+            opacity: 0.1;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-title {
+            font-family: 'Figtree', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+        
+        .cta-subtitle {
+            font-size: 24px;
+            margin-bottom: 50px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .btn {
+            padding: 20px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            font-family: 'Figtree', sans-serif;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #3B82F6;
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+        
+        .btn-primary:hover {
+            background: #f8fafc;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255,255,255,0.4);
+        }
+        
+        .btn-secondary {
+            background: #000000;
+            color: white;
+            border: 2px solid #000000;
+        }
+        
+        .btn-secondary:hover {
+            background: #1f2937;
+            border-color: #1f2937;
+            transform: translateY(-3px);
+        }
+        
+        .offer-banner {
+            /* Updated to use black background */
+            background: #000000;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 40px 0;
+            border-radius: 12px;
+            animation: pulse 2s infinite;
+            border: 3px solid #3B82F6;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Updated testimonial styling */
+        .testimonial {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px solid #e5e7eb;
+            font-style: italic;
+            font-size: 18px;
+            line-height: 1.8;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 80px;
+            color: #3B82F6;
+            opacity: 0.2;
+            font-family: serif;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: #3B82F6;
+            margin-top: 25px;
+            font-style: normal;
+            font-size: 18px;
+        }
+        
+        .testimonial-company {
+            color: #6b7280;
+            font-size: 16px;
+            font-style: normal;
+        }
+        
+        .journey-step {
+            display: flex;
+            align-items: flex-start;
+            margin: 40px 0;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 2px solid #f3f4f6;
+            transition: all 0.3s ease;
+        }
+        
+        .journey-step:hover {
+            border-color: #3B82F6;
+            transform: translateX(10px);
+        }
+        
+        .step-number {
+            background: #3B82F6;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 24px;
+            margin-right: 30px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .step-content h4 {
+            font-family: 'Figtree', sans-serif;
+            color: #000000;
+            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+        
+        .step-content p {
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        
+        /* Updated pricing grid */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.featured {
+            border-color: #3B82F6;
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 20px;
+            left: -30px;
+            right: -30px;
+            background: #3B82F6;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            transform: rotate(-3deg);
+        }
+        
+        .pricing-title {
+            font-family: 'Figtree', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+        
+        .pricing-price {
+            font-size: 40px;
+            font-weight: 800;
+            color: #3B82F6;
+            margin-bottom: 25px;
+        }
+        
+        .pricing-features {
+            text-align: left;
+            margin: 30px 0;
+        }
+        
+        .pricing-features li {
+            margin: 12px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .pricing-features li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+        
+        .footer {
+            /* Updated footer to use black background */
+            background: #000000;
+            color: #9ca3af;
+            padding: 50px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .footer a {
+            color: #3B82F6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer a:hover {
+            color: #60a5fa;
+        }
+        
+        /* Enhanced mobile responsiveness - desktop first approach */
+        @media (max-width: 1024px) {
+            .email-container {
+                max-width: 90%;
+            }
+            
+            .section {
+                padding: 50px 40px;
+            }
+            
+            .header {
+                padding: 50px 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .email-container {
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+                max-width: 100%;
+            }
+            
+            .section {
+                padding: 40px 25px;
+            }
+            
+            .header {
+                padding: 40px 25px;
+            }
+            
+            .logo {
+                font-size: 36px;
+            }
+            
+            .tagline {
+                font-size: 20px;
+            }
+            
+            .explosive-headline {
+                font-size: 32px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .journey-step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin: 0 auto 25px;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .explosive-headline {
+                font-size: 28px;
+            }
+            
+            .cta-title {
+                font-size: 32px;
+            }
+            
+            .logo {
+                font-size: 32px;
+            }
+            
+            .tagline {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo">🚀 HireZapp</div>
+                <div class="tagline">The AI Revolution That's Transforming Recruitment Forever</div>
+                <div class="hero-badge">✨ Join 2,847+ Companies Already Hiring Smarter</div>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Personal Greeting -->
+            <div class="section">
+                <div class="greeting">Hi {{FIRST_NAME}},</div>
+                
+                <!-- Added explosive opening with FOMO -->
+                <div class="urgency-banner">
+                    🔥 BREAKING: Companies Using AI for Hiring Are 3X More Likely to Land Top Talent!
+                </div>
+                
+                <p style="font-size: 18px; margin-bottom: 25px;">I hope this finds you well! I'm reaching out because <span class="highlight">{{COMPANY_NAME}}</span> is missing out on the biggest hiring revolution since the internet. While your competitors are still manually screening resumes, smart companies are already using AI to hire 80% faster.</p>
+                
+                <div class="fomo-box">
+                    ⚡ RIGHT NOW: 2,847+ companies are using HireZapp to steal the best talent before traditional recruiters even see them!
+                </div>
+                
+                <div class="problem-box">
+                    <h3 style="font-size: 24px; margin-bottom: 20px; color: #dc2626;">🔥 The Brutal Hiring Reality (That's Costing You Millions)</h3>
+                    <p style="font-size: 18px; margin-bottom: 20px;"><strong>{{FIRST_NAME}}, does this nightmare sound familiar?</strong></p>
+                    <ul style="margin: 20px 0; padding-left: 25px; font-size: 16px; line-height: 1.8;">
+                        <li><strong>3-4 hours</strong> writing each job description (while competitors post in 30 seconds)</li>
+                        <li><strong>Manually screening 200+ resumes</strong> per role (missing 90% of great candidates)</li>
+                        <li><strong>Losing top talent</strong> to faster companies during your 2-week screening process</li>
+                        <li><strong>Juggling 8+ different tools</strong> that don't talk to each other</li>
+                        <li><strong>Zero insights</strong> into why candidates are rejecting your offers</li>
+                        <li><strong>Spending $15,000+ per hire</strong> on agencies and job boards</li>
+                    </ul>
+                    <p style="font-size: 18px; font-weight: 600; color: #dc2626;">The harsh truth? Every day you delay, your competitors are snatching the talent you need.</p>
+                </div>
+                
+                <p style="font-size: 18px; margin-top: 30px;">What if I told you there's a way to <span class="highlight">reduce your hiring time by 80%, cut costs by 60%, and actually improve candidate quality</span> - all while your competitors are still stuck in the stone age?</p>
+            </div>
+            
+            <!-- Case Study Section -->
+            <!-- Added compelling AccioJob case study -->
+            <div class="section section-alt">
+                <div class="case-study">
+                    <div class="case-study-content">
+                        <div class="yc-badge">Y COMBINATOR BACKED</div>
+                        <div class="case-study-title">How AccioJob Crushed Their Hiring Goals</div>
+                        <p style="font-size: 18px; margin-bottom: 30px; opacity: 0.9;">AccioJob, a Y Combinator-backed startup, was drowning in applications and losing great candidates to faster competitors. Here's what happened when they switched to HireZapp:</p>
+                        
+                        <div class="case-study-stats">
+                            <div class="case-stat">
+                                <span class="case-stat-number">45→15</span>
+                                <span class="case-stat-label">Days to Hire</span>
+                            </div>
+                            <div class="case-stat">
+                                <span class="case-stat-number">67%</span>
+                                <span class="case-stat-label">Cost Reduction</span>
+                            </div>
+                            <div class="case-stat">
+                                <span class="case-stat-number">3.2X</span>
+                                <span class="case-stat-label">More Quality Candidates</span>
+                            </div>
+                            <div class="case-stat">
+                                <span class="case-stat-number">95%</span>
+                                <span class="case-stat-label">Candidate Satisfaction</span>
+                            </div>
+                        </div>
+                        
+                        <blockquote style="font-size: 20px; font-style: italic; margin: 30px 0; padding: 20px; border-left: 4px solid #fbbf24; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                            "HireZapp didn't just speed up our hiring - it completely transformed how we think about talent acquisition. We went from reactive hiring to proactive talent magnetism."
+                        </blockquote>
+                        <p style="text-align: right; font-weight: 600; color: #fbbf24;">- Priya Sharma, Head of Talent, AccioJob</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- The Solution Story -->
+            <div class="section">
+                <div class="explosive-headline">🎯 Meet Your AI Hiring Superpower</div>
+                <div class="sub-headline">The Complete Recruitment Revolution That's Making Traditional Hiring Obsolete</div>
+                
+                <div class="solution-box">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">Imagine This: Your Perfect Hiring Day</h3>
+                    <p style="font-size: 18px; line-height: 1.7;">It's 9 AM. You need to hire a senior developer. By 9:30 AM, you have a perfect job description, a branded careers page, and applications are already flowing in. By lunch, AI has analyzed every candidate and ranked them by fit. By 3 PM, you're interviewing only the top 3 candidates. By end of week, you've made an offer to someone perfect.</p>
+                    <p style="font-size: 18px; font-weight: 600; color: #0ea5e9; margin-top: 20px;">That's not fantasy. That's Tuesday with HireZapp.</p>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number">30s</span>
+                        <span class="stat-label">Perfect Job Descriptions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">80%</span>
+                        <span class="stat-label">Faster Time-to-Hire</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Candidate Match Accuracy</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">60%</span>
+                        <span class="stat-label">Cost Reduction</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">2,847+</span>
+                        <span class="stat-label">Companies Already Using</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Core Features -->
+            <div class="section section-alt">
+                <div class="explosive-headline">🚀 The Three Pillars of Hiring Domination</div>
+                <div class="sub-headline">How {{COMPANY_NAME}} Will Leave Competitors in the Dust</div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">1. AI Screening & Analysis</div>
+                        <div class="feature-desc">Our AI doesn't just read resumes - it understands them. Get detailed candidate insights, GitHub analysis for developers, personality assessments, and match scores that are 95% accurate. Stop wasting time on wrong-fit candidates forever.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">✨</div>
+                        <div class="feature-title">2. Magnetic Employer Branding</div>
+                        <div class="feature-desc">Get a stunning, AI-generated careers page that makes top talent choose {{COMPANY_NAME}} over your competitors. Professional branding that would cost $50,000 with agencies - yours in 5 minutes.</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <div class="feature-title">3. Omnichannel Talent Sourcing</div>
+                        <div class="feature-desc">Why limit yourself to job boards? Our platform integrates LinkedIn, creates viral application experiences, and manages your entire talent pipeline. Cast a wider net, catch better fish.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Detailed Features Journey -->
+            <div class="section">
+                <div class="explosive-headline">🔥 Your Complete Hiring Transformation Journey</div>
+                <div class="sub-headline">From Job Posting to Job Offer in Record Time</div>
+                
+                <div class="journey-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>⚡ Lightning-Fast Job Creation</h4>
+                        <p>Describe your role in plain English. Our AI instantly generates a compelling, SEO-optimized job description that attracts quality candidates and filters out time-wasters. What used to take 3 hours now takes 30 seconds.</p>
+                    </div>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>🎨 Intelligent Application Forms</h4>
+                        <p>AI automatically creates role-specific application forms. Tech roles get GitHub integration, creative roles get portfolio sections, sales roles get achievement trackers. Every form is perfectly tailored to capture what matters most.</p>
+                    </div>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>🧠 Superhuman Candidate Analysis</h4>
+                        <p>Every applicant gets a comprehensive AI analysis: technical skills assessment, cultural fit prediction, salary expectations, and even red flags. Our chatbot answers any questions about candidates instantly - like having a recruitment expert available 24/7.</p>
+                    </div>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>📅 Frictionless Interview Scheduling</h4>
+                        <p>Candidates book interviews directly through integrated calendars. LinkedIn integration pulls additional insights. Automated reminders ensure no-shows become extinct. Your calendar stays full of qualified candidates.</p>
+                    </div>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>📊 Data-Driven Hiring Intelligence</h4>
+                        <p>Track every metric that matters: source quality, time-to-hire, candidate drop-off points, and hiring success rates. Export to Google Sheets for deeper analysis. Make every hire better than the last.</p>
+                    </div>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>🎯 Advanced Candidate Matching</h4>
+                        <p>Our AI learns from your hiring decisions and gets smarter over time. It identifies patterns in your best hires and automatically surfaces similar candidates. It's like having a recruitment AI that knows your company better than you do.</p>
+                    </div>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h4>🚀 Employer Brand Amplification</h4>
+                        <p>Your careers page becomes a talent magnet. Showcase company culture, employee testimonials, and growth opportunities. Candidates don't just apply - they get excited about joining {{COMPANY_NAME}}.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Social Proof -->
+            <div class="section section-alt">
+                <div class="explosive-headline">💬 What Industry Leaders Are Saying</div>
+                <div class="sub-headline">Join the Companies Already Winning with HireZapp</div>
+                
+                <div class="testimonial">
+                    "HireZapp is like having a team of 10 recruiters working 24/7. We reduced our time-to-hire from 6 weeks to 10 days and the quality of candidates has never been better. Our CEO asked how we suddenly became so good at hiring!"
+                    <div class="testimonial-author">- Sarah Chen, VP of Talent</div>
+                    <div class="testimonial-company">TechFlow (Series B Startup)</div>
+                </div>
+                
+                <div class="testimonial">
+                    "The AI analysis is scary accurate. It flagged concerns about a candidate that seemed perfect on paper - turns out they had a history of job-hopping every 6 months. Saved us from a costly hiring mistake."
+                    <div class="testimonial-author">- Michael Rodriguez, Head of Engineering</div>
+                    <div class="testimonial-company">DataCorp (Fortune 500)</div>
+                </div>
+                
+                <div class="testimonial">
+                    "Our careers page went from generic to gorgeous overnight. We're now getting unsolicited applications from candidates who found us organically. The employer branding feature alone is worth 10x what we pay."
+                    <div class="testimonial-author">- Lisa Park, Chief People Officer</div>
+                    <div class="testimonial-company">GrowthLabs (Y Combinator W23)</div>
+                </div>
+                
+                <div class="testimonial">
+                    "I was skeptical about AI in hiring, but HireZapp changed my mind. It doesn't replace human judgment - it supercharges it. We're making better hiring decisions faster than ever before."
+                    <div class="testimonial-author">- David Kumar, Founder & CEO</div>
+                    <div class="testimonial-company">InnovateTech (Bootstrapped to $10M ARR)</div>
+                </div>
+            </div>
+            
+            <!-- Pricing -->
+            <div class="section">
+                <div class="explosive-headline">💰 Investment Options That Pay for Themselves</div>
+                <div class="sub-headline">Choose Your Path to Hiring Excellence</div>
+                
+                <div class="offer-banner">
+                    🎁 LIMITED TIME: First Hire Completely FREE + 100 Bonus AI Credits!
+                </div>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-title">🆓 Starter Plan</div>
+                        <div class="pricing-price">FREE</div>
+                        <p style="color: #64748b; margin-bottom: 20px;">Perfect for Testing the Waters</p>
+                        <ul class="pricing-features">
+                            <li>50 Welcome Credits (Worth ₹250)</li>
+                            <li>50 Free Credits Every Month</li>
+                            <li>AI Job Description Generator</li>
+                            <li>Smart Application Forms</li>
+                            <li>Basic Candidate Scoring</li>
+                            <li>FREE Careers Page Builder</li>
+                            <li>Email Support</li>
+                        </ul>
+                        <p style="color: #059669; font-weight: 600; margin-top: 20px;">Risk-free way to experience the future!</p>
+                    </div>
+                    
+                    <div class="pricing-card featured">
+                        <div class="pricing-title">⭐ Professional Plan</div>
+                        <div class="pricing-price">₹5/credit</div>
+                        <p style="color: #64748b; margin-bottom: 20px;">Most Popular for Growing Teams</p>
+                        <ul class="pricing-features">
+                            <li>Everything in Starter Plan</li>
+                            <li>Advanced AI Candidate Analysis</li>
+                            <li>AI Chatbot for Instant Insights</li>
+                            <li>GitHub Score for Tech Roles</li>
+                            <li>Calendar Integration</li>
+                            <li>LinkedIn Profile Integration</li>
+                            <li>Google Sheets Export</li>
+                            <li>Advanced Analytics Dashboard</li>
+                            <li>Priority Support</li>
+                            <li>Custom Branding Options</li>
+                        </ul>
+                        <p style="color: #4338ca; font-weight: 600; margin-top: 20px;">The sweet spot for serious hiring!</p>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <div class="pricing-title">🚀 Enterprise Plan</div>
+                        <div class="pricing-price">₹3/credit</div>
+                        <p style="color: #64748b; margin-bottom: 20px;">For High-Volume Hiring</p>
+                        <ul class="pricing-features">
+                            <li>Everything in Professional Plan</li>
+                            <li>Bulk Credit Discounts</li>
+                            <li>Custom AI Model Training</li>
+                            <li>Advanced Integrations</li>
+                            <li>Dedicated Account Manager</li>
+                            <li>Custom Reporting</li>
+                            <li>SLA Guarantees</li>
+                            <li>White-label Options</li>
+                        </ul>
+                        <p style="color: #7c3aed; font-weight: 600; margin-top: 20px;">Maximum value for scale!</p>
+                    </div>
+                </div>
+                
+                <div class="fomo-box">
+                    🔥 EXCLUSIVE BONUS: Free Professional Careers Page Setup (Worth ₹25,000) - Limited to First 100 Companies!
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="section cta-section">
+                <div class="cta-content">
+                    <div class="cta-title">Ready to Dominate Hiring Like {{COMPANY_NAME}} Should?</div>
+                    <div class="cta-subtitle">Join 2,847+ companies already using HireZapp to hire faster, smarter, and cheaper</div>
+                    
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary">🚀 Start Free - Get 100 Credits Now</a>
+                        <a href="#" class="btn btn-secondary">📅 Book VIP Demo (15 Minutes)</a>
+                    </div>
+                    
+                    <p style="margin-top: 25px; font-size: 16px; opacity: 0.9;">
+                        ✅ No credit card required • ✅ Setup in under 5 minutes • ✅ Cancel anytime<br>
+                        ✅ 30-day money-back guarantee • ✅ Free migration support
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Personal Touch -->
+            <div class="section">
+                <div class="explosive-headline">👋 A Personal Message from Our Founder</div>
+                
+                <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 40px; border-radius: 20px; border-left: 6px solid #4338ca;">
+                    <p style="font-size: 18px; margin-bottom: 20px;"><strong>Dear {{FIRST_NAME}},</strong></p>
+                    
+                    <p style="font-size: 16px; line-height: 1.7; margin-bottom: 20px;">I started HireZapp because I was frustrated watching great companies lose amazing talent to bureaucratic hiring processes. Every day you delay adopting AI-powered hiring, your competitors are getting stronger while you're getting left behind.</p>
+                    
+                    <p style="font-size: 16px; line-height: 1.7; margin-bottom: 20px;">Here's what I genuinely believe: <strong>{{COMPANY_NAME}} deserves to attract and hire the absolute best talent available.</strong> You shouldn't have to choose between speed and quality, or between cost and results.</p>
+                    
+                    <p style="font-size: 16px; line-height: 1.7; margin-bottom: 25px;">I'd love to personally show you how HireZapp can transform your hiring process. In just 15 minutes, I can demonstrate:</p>
+                    
+                    <ul style="margin: 20px 0; padding-left: 25px; font-size: 16px; line-height: 1.8;">
+                        <li>How to create your first job posting in under 30 seconds</li>
+                        <li>Live AI analysis of real candidate profiles</li>
+                        <li>Your custom careers page setup (worth ₹25,000)</li>
+                        <li>Exactly how to get your first hire completely free</li>
+                        <li>The specific ROI you can expect in your first 90 days</li>
+                    </ul>
+                    
+                    <p style="font-size: 16px; line-height: 1.7; margin-bottom: 20px;">Even if HireZapp isn't the perfect fit for {{COMPANY_NAME}} right now, I promise you'll walk away with actionable insights that will improve your hiring immediately.</p>
+                    
+                    <p style="font-size: 16px; line-height: 1.7; margin-bottom: 25px;"><strong>The question isn't whether AI will transform hiring - it's whether {{COMPANY_NAME}} will lead the transformation or get left behind.</strong></p>
+                    
+                    <div style="text-align: center; margin: 30px 0;">
+                        <a href="#" class="btn btn-primary" style="font-size: 18px; padding: 20px 40px;">📅 Book My Personal Demo Call</a>
+                    </div>
+                    
+                    <p style="margin-top: 25px; color: #4338ca; font-weight: 600; font-size: 16px;">
+                        Looking forward to helping {{COMPANY_NAME}} hire like never before,<br><br>
+                        <strong>Rahul Sharma</strong><br>
+                        Founder & CEO, HireZapp<br>
+                        <em>P.S. The first 100 companies get our premium careers page setup absolutely free. Don't miss out!</em>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Final FOMO Push -->
+            <div class="section section-alt">
+                <div class="urgency-banner">
+                    ⏰ URGENT: Only 47 Spots Left for Free Premium Careers Page Setup This Month!
+                </div>
+                
+                <div style="text-align: center; margin: 40px 0;">
+                    <h3 style="font-size: 28px; color: #4338ca; margin-bottom: 20px;">What Happens Next?</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin: 30px 0;">
+                        <div style="text-align: center;">
+                            <div style="background: #4338ca; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 24px; font-weight: bold;">1</div>
+                            <h4 style="margin-bottom: 10px;">Click "Start Free"</h4>
+                            <p style="color: #64748b; font-size: 14px;">2-minute signup, no credit card needed</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="background: #0ea5e9; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 24px; font-weight: bold;">2</div>
+                            <h4 style="margin-bottom: 10px;">Create Your First Job</h4>
+                            <p style="color: #64748b; font-size: 14px;">Watch AI magic happen in 30 seconds</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="background: #06b6d4; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 24px; font-weight: bold;">3</div>
+                            <h4 style="margin-bottom: 10px;">Get Your First Hire</h4>
+                            <p style="color: #64748b; font-size: 14px;">Completely free with your 100 credits</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 40px 0;">
+                    <a href="#" class="btn btn-primary" style="font-size: 20px; padding: 20px 50px; animation: pulse 2s infinite;">🚀 Transform {{COMPANY_NAME}}'s Hiring Now</a>
+                    <p style="margin-top: 15px; font-size: 14px; color: #64748b;">Join 2,847+ companies already hiring smarter • Free forever plan available</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div style="margin-bottom: 20px;">
+                <img src="/placeholder.svg?height=40&width=120" alt="HireZapp Logo" style="height: 40px;">
+            </div>
+            <p style="font-size: 16px; margin-bottom: 15px;"><strong>HireZapp - The Future of Recruitment is Here</strong></p>
+            <p style="margin: 15px 0;">
+                <a href="#">Unsubscribe</a> | 
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="#">Contact Support</a>
+            </p>
+            <p style="font-size: 12px; opacity: 0.7; margin-top: 20px;">
+                This email was sent to {{EMAIL}} because {{COMPANY_NAME}} deserves better hiring tools.<br>
+                HireZapp Technologies Pvt. Ltd. | Bangalore, India | support@hirezapp.com
+            </p>
+            <p style="font-size: 11px; opacity: 0.6; margin-top: 15px;">
+                © 2024 HireZapp. All rights reserved. AI-Powered Recruitment Platform.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

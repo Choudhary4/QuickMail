@@ -1,0 +1,4 @@
+email,firstName,productName,discountCode,emailId,delivered,deliveredAt,seen,seenAt,replied,repliedAt,bounced,bounceReason,complaint,suppressed,followUpCount,lastFollowUpAt,status
+saurabhkuntal91@gmail.com,Saurabh,Pro Plan,SAVE20PRO,1731907200000-k3m9x7q2w,TRUE,2025-11-18 09:15:23,TRUE,2025-11-18 10:30:45,FALSE,,FALSE,,FALSE,FALSE,0,,active
+saurabhkuntal91@gmail.com,Saurabh,Enterprise Plan,ENTERPRISE50,1731910800000-p9a8b3c5d,TRUE,2025-11-18 10:20:15,FALSE,,FALSE,,FALSE,,FALSE,FALSE,0,,active
+saurabhkuntal91@gmail.com,Saurabh,Starter Pack,TRIAL10,1731914400000-x2y5z8w3q,TRUE,2025-11-18 11:05:42,TRUE,2025-11-18 11:45:20,TRUE,2025-11-18 14:22:10,FALSE,,FALSE,FALSE,0,,replied

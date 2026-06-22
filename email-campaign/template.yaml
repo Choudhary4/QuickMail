@@ -1,0 +1,99 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Email campaign system with async processing using SQS and Lambda.
+  Campaign jobs are queued via Next.js API, processed by Lambda, with status tracked in Google Sheets.
+
+Globals:
+  Function:
+    Timeout: 900
+    MemorySize: 1024
+  Api:
+    Cors:
+      AllowMethods: "'POST, OPTIONS'"
+      AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+      AllowOrigin: "'*'"
+
+Resources:
+  # SQS Queue for campaign jobs
+  CampaignQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: email-campaign-queue
+      VisibilityTimeout: 900
+      MessageRetentionPeriod: 1209600
+      ReceiveMessageWaitTimeSeconds: 20
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt CampaignDLQ.Arn
+        maxReceiveCount: 3
+
+  # Dead Letter Queue
+  CampaignDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: email-campaign-dlq
+      MessageRetentionPeriod: 1209600
+
+  # Lambda processor for async jobs
+  CampaignProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambda_processor/
+      Handler: handler.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64
+      ReservedConcurrentExecutions: 5
+      Events:
+        SQSTrigger:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt CampaignQueue.Arn
+            BatchSize: 1
+            Enabled: true
+      Environment:
+        Variables:
+          AWS_SES_REGION: !Ref AWS::Region
+          AWS_SES_CONFIGURATION_SET: !Ref ParamSESConfigurationSet
+          GOOGLE_SERVICE_ACCOUNT_KEY: !Ref ParamGoogleServiceAccountKey
+          NEXT_PUBLIC_BASE_URL: !Ref ParamBaseUrl
+      Policies:
+        # SES permissions
+        - Statement:
+          - Effect: "Allow"
+            Action:
+              - "ses:SendEmail"
+              - "ses:SendRawEmail"
+            Resource: "*"
+
+        # SQS permissions
+        - Statement:
+          - Effect: "Allow"
+            Action:
+              - "sqs:ReceiveMessage"
+              - "sqs:DeleteMessage"
+              - "sqs:GetQueueAttributes"
+            Resource: !GetAtt CampaignQueue.Arn
+
+Parameters:
+  ParamSESConfigurationSet:
+    Type: String
+    Description: AWS SES Configuration Set name for tracking.
+  ParamGoogleServiceAccountKey:
+    Type: String
+    NoEcho: true
+    Description: Google Service Account JSON for Sheets API.
+  ParamBaseUrl:
+    Type: String
+    Description: Base URL for tracking pixel (e.g., https://yourapp.com)
+
+Outputs:
+  CampaignQueueUrl:
+    Description: "SQS Queue URL for enqueueing jobs"
+    Value: !Ref CampaignQueue
+    Export:
+      Name: !Sub "${AWS::StackName}-CampaignQueueUrl"
+
+  CampaignDLQUrl:
+    Description: "SQS DLQ URL"
+    Value: !Ref CampaignDLQ

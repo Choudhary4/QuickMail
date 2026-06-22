@@ -1,0 +1,15 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "quickmail-cron-jobs"
+resolve_s3 = true
+s3_prefix = "quickmail-cron-jobs"
+region = "ap-south-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "ParamVercelAppUrl=\"smtp-mail-iota.vercel.app\" ParamCronSecretToken=\"62a602c3ec34a29eb451b7fecf51bb8f6447aac1aba5766ba5ffcf6b8419441f\""
+image_repositories = []
+
+[default.global.parameters]
+region = "ap-south-1"
+
