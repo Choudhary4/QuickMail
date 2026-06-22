@@ -204,7 +204,7 @@ export function StepSmtpConfig({ onNext }: { onNext: () => void }) {
         }
       } else {
         // Original SMTP flow
-        const payload: any = {};
+        const payload: any = { provider: 'smtp' };
         
         // Only include SMTP config if not from env
         if (!smtpFromEnv && smtpConfig.host && smtpConfig.user) {
